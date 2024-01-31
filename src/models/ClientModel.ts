@@ -16,8 +16,8 @@ const ClientModel: ClientModelProtocol = {
     return result;
   },
 
-  async findClientPhoneNumber(phoneNumber) {
-    const result = await connectionDB.select().table('Clients').where({ phoneNumber });
+  async findClientCPF(cpf) {
+    const result = await connectionDB.select().table('Clients').where({ cpf });
     return result;
   },
 

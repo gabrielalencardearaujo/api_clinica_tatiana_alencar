@@ -12,32 +12,57 @@ class ClientController {
     const isCPF = CPFreview.isCPF(value);
 
     if (isEmail) {
+
       try {
         const result = await ClientModel.findClientEmail(value);
 
-        if(result.length === 0) {
+        if (result.length === 0) {
           res.status(404);
-          res.json({ 
+          res.json({
             info: "Client not exists!"
-           })
+          })
         } else {
           res.status(200);
           res.json({ info: "Request Success", body: result[0] });
         }
-        
+
       } catch (error) {
         console.log(error);
         res.status(500);
-        res.json({ 
-          info: "Ocorreu algum erro no banco de dados! Tente novamente mais tarde" 
+        res.json({
+          info: "Ocorreu algum erro no banco de dados! Tente novamente mais tarde"
         });
       }
+
+    } else if (isCPF) {
+      try {
+        const result = await ClientModel.findClientCPF(value);
+
+        if (result.length === 0) {
+          res.status(404);
+          res.json({
+            info: "Client not exists!"
+          })
+        } else {
+          res.status(200)
+          res.json({ 
+            info: "Request Success", 
+            body: result[0] }); 
+        }
+
+      } catch (error) {
+        console.log(error);
+        res.status(500);
+        res.json({
+          info: "Ocorreu algum erro no banco de dados! Tente novamente mais tarde"
+        });
+      }
+
     } else if (!isCPF && !isEmail) {
       const nameFormated = formatName(value);
 
       res.json({ info: 'É um nome', body: nameFormated });
-    } else if (isCPF) res.json({ info: 'É um CPF' });
-   
+    }
     else res.json({ info: 'Valor incorreto' })
 
   }
