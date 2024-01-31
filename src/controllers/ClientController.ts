@@ -45,9 +45,10 @@ class ClientController {
           })
         } else {
           res.status(200)
-          res.json({ 
-            info: "Request Success", 
-            body: result[0] }); 
+          res.json({
+            info: "Request Success",
+            body: result[0]
+          });
         }
 
       } catch (error) {
@@ -60,10 +61,36 @@ class ClientController {
 
     } else if (!isCPF && !isEmail) {
       const nameFormated = formatName(value);
+      try {
+        const result = await ClientModel.findClientByName(nameFormated)
 
-      res.json({ info: 'É um nome', body: nameFormated });
+        if (result.length === 0) {
+          res.status(404);
+          res.json({
+            info: "Client not exists!"
+          })
+        } else {
+
+          res.status(200);
+          res.json({
+            info: 'É um nome',
+            body: result // Retorna um array
+          });
+        }
+
+      } catch (error) {
+        console.log(error);
+        res.status(500);
+        res.json({
+          info: "Ocorreu algum erro no banco de dados! Tente novamente mais tarde"
+        });
+      }
     }
-    else res.json({ info: 'Valor incorreto' })
+
+    else {
+      res.status(400);
+      res.json({ info: 'Valor incorreto' })
+    }
 
   }
 

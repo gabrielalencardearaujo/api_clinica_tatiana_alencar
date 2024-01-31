@@ -5,7 +5,7 @@ const CPFreview = {
 
   isCPF(cpf: string) {
     console.log(cpf)
-    return true;
+    return false;
   }
 }
 

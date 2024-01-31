@@ -4,7 +4,7 @@ export type ClientModelProtocol = {
   findClientByEmail(email: string): Promise<ClientsDB[]>;
   findClientByCPF(cpf: string): Promise<ClientsDB[]>;
   findClientById(id: number): Promise<ClientsDB[]>;
-  findClientByName(name: number): Promise<ClientsDB[]>;
+  findClientByName(name: string): Promise<ClientsDB[]>;
 }
 
 export type BodyClient = {

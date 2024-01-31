@@ -26,8 +26,8 @@ const ClientModel: ClientModelProtocol = {
     return result;
   },
 
-  async findClientByName(id) {
-    const result = await connectionDB.select().table('Clients').where({ idClients: id });
+  async findClientByName(name) {
+    const result = await connectionDB.select().table('Clients').where({ name });
     return result;
   }
 }
