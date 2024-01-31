@@ -1,16 +1,17 @@
 import ClientModel from "@/models/ClientModel";
 import { Request, Response } from "express";
 import validator from 'validator';
-import CPFreview from "@/utils/CPFreview";
+import ValidaCPF from "@/utils/ValidaCPF";
 import { formatName } from "@/utils/formatName";
 
 class ClientController {
   async findOneClient(req: Request, res: Response) {
     const { value } = req.body;
 
-    const isEmail = validator.isEmail(value);
-    const isCPF = CPFreview.isCPF(value);
+    const isEmail = validator.isEmail(value); 
+    const isCPF = ValidaCPF.isCPF(value);
 
+    console.log(isCPF);
     if (isEmail) {
 
       try {
