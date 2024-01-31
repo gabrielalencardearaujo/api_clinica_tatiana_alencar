@@ -11,17 +11,22 @@ const ClientModel: ClientModelProtocol = {
     return result;
   },
 
-  async findClientEmail(email) {
+  async findClientByEmail(email) {
     const result = await connectionDB.select().table('Clients').where({ email });
     return result;
   },
 
-  async findClientCPF(cpf) {
+  async findClientByCPF(cpf) {
     const result = await connectionDB.select().table('Clients').where({ cpf });
     return result;
   },
 
-  async findClientId(id) {
+  async findClientById(id) {
+    const result = await connectionDB.select().table('Clients').where({ idClients: id });
+    return result;
+  },
+
+  async findClientByName(id) {
     const result = await connectionDB.select().table('Clients').where({ idClients: id });
     return result;
   }

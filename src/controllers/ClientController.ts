@@ -14,7 +14,7 @@ class ClientController {
     if (isEmail) {
 
       try {
-        const result = await ClientModel.findClientEmail(value);
+        const result = await ClientModel.findClientByEmail(value);
 
         if (result.length === 0) {
           res.status(404);
@@ -36,7 +36,7 @@ class ClientController {
 
     } else if (isCPF) {
       try {
-        const result = await ClientModel.findClientCPF(value);
+        const result = await ClientModel.findClientByCPF(value);
 
         if (result.length === 0) {
           res.status(404);
@@ -79,7 +79,7 @@ class ClientController {
     } else {
 
       try {
-        const result = await ClientModel.findClientId(+id);
+        const result = await ClientModel.findClientById(+id);
         if (result.length === 0) {
           res.status(404);
           res.json({ info: 'Client not exists!' })
