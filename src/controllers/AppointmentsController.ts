@@ -104,7 +104,7 @@ class AppointmentController implements AppointmentControllerProtocol {
         if (appo) {
           res.status(200)
           res.json({
-            info: 'Search success!',
+            info: 'Delete success!',
             body: appo
           })
         } else {
