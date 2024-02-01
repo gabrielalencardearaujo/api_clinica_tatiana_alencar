@@ -19,6 +19,7 @@ router.delete('/appointments/:id', AppointmentsController.delete);
 
 // Rotas de Produtos/Servicos:
 router.get('/products', ProductController.allItems);
+router.post('/products', ProductController.register);
 
 
 export { router };
