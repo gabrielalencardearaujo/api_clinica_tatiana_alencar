@@ -24,6 +24,11 @@ class AppointmentModel implements AppointmentModelProtocol {
     const result = await connectionDB.delete().table('Appointments').where({ idAppointment });
     return result;
   }
+
+  async updateAppointment(body: AppointmentDB, idAppointment: number) {
+    const result = await connectionDB.update(body).table('Appointments').where({ idAppointment });
+    return result;
+  }
 }
 
 export default new AppointmentModel;

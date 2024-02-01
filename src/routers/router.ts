@@ -13,6 +13,8 @@ router.get('/client/:id', ClientController.findById);
 router.get('/appointments', AppointmentsController.allAppo);
 router.get('/appointments/:id', AppointmentsController.findId);
 router.post('/appointments', AppointmentMiddleware, AppointmentsController.register);
+router.put('/appointments/:id', AppointmentMiddleware, AppointmentsController.update);
+
 router.delete('/appointments/:id', AppointmentsController.delete);
 
 

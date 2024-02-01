@@ -59,7 +59,8 @@ class AppointmentController implements AppointmentControllerProtocol {
 
     try {
       const appo = await AppointmentModel.findById(+id);
-      console.log(appo);
+
+      res.status(200);
       res.json({
         info: 'Search success!',
         body: appo
@@ -73,7 +74,46 @@ class AppointmentController implements AppointmentControllerProtocol {
         body: undefined
       });
     }
+  }
 
+  async update(req: Request, res: Response) {
+    const body = req.body;
+    const { id } = req.params;
+
+    if (isNaN(+id)) {
+      res.status(400);
+      res.json({
+        info: 'Identifier invalid!',
+        body: undefined
+      })
+      return;
+    }
+
+    try {
+      const appo = AppointmentModel.updateAppointment(body, +id);
+
+      if (appo) {
+        res.status(200);
+        res.json({
+          info: 'Update success!',
+          body: appo
+        });
+      } else {
+        res.status(404)
+        res.json({
+          info: 'Appointment not exists!',
+          body: undefined
+        })
+      }
+    } catch (error) {
+      console.log(error);
+
+      res.status(500);
+      res.json({
+        info: 'An unexpected error occurred in our services, please try later!',
+        body: undefined
+      });
+    } 
   }
 
   async delete(req: Request, res: Response) {
