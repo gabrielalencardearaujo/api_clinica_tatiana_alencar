@@ -1,5 +1,5 @@
 import connectionDB from "@/database/connectionSQL";
-import { ClientModelProtocol } from "./ClientModelProtocols";
+import { ClientModelProtocol } from "./ModelProtocols";
 
 const ClientModel: ClientModelProtocol = {
   async getClients() {

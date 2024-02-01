@@ -3,8 +3,8 @@ import { Request, Response } from "express";
 import { AppointmentControllerProtocol } from "./ControllersProtocol";
 
 
+
 class AppointmentController implements AppointmentControllerProtocol {
- 
 
 }
 
