@@ -1,6 +1,7 @@
+import * as express from 'express';
 import AppointmentsController from '@/controllers/AppointmentsController';
 import ClientController from '../controllers/ClientController';
-import * as express from 'express';
+import ProductController from '../controllers/ProductsController';
 import { AppointmentMiddleware } from '@/middlewares/RegisterMiddleware';
 
 const router = express.Router();
@@ -17,7 +18,7 @@ router.put('/appointments/:id', AppointmentMiddleware, AppointmentsController.up
 router.delete('/appointments/:id', AppointmentsController.delete);
 
 // Rotas de Produtos/Servicos:
-
+router.get('/products', ProductController.allItems);
 
 
 export { router };

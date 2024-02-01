@@ -1,7 +1,7 @@
 import connectionDB from "@/database/connectionSQL";
 import { ProductsModelProtocol, BodyProduct } from "./ModelProtocols";
 
-const ClientModel: ProductsModelProtocol = {
+const ProductModel: ProductsModelProtocol = {
   async getProducts() {
     return await connectionDB.select().table('typeAppointments');
   },
@@ -25,4 +25,4 @@ const ClientModel: ProductsModelProtocol = {
   // }
 }
 
-export default ClientModel;
+export default ProductModel;
