@@ -2,21 +2,13 @@ import connectionDB from "@/database/connectionSQL";
 import { AppointmentDB, AppointmentModelProtocol } from "./ModelProtocols";
 
 class AppointmentModel implements AppointmentModelProtocol {
-  async allAppointments() {
-    
-  }
 
-  async findById(id: number) {
-
-  }
 
   async registerAppointment(body: AppointmentDB) {
-
+    const result = await connectionDB.insert(body).into('Appointments');
+    return result;
   }
 
-  async (id: number) {
-
-  }
 
 }
 

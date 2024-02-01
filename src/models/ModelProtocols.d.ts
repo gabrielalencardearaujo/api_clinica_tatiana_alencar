@@ -18,18 +18,17 @@ export type BodyClient = {
 type ClientsDB = BodyClient & { 'idClients': number }
 
 type AppointmentDB = {
-  idAppointment: number,
   fk_idClient: number,
-  id_Payment: number,
-  fk_idTypeAppointment: number,
+  fk_typeAppointment: number,
+  idPayment: number,
   description: string,
   dateTime: string,
 }
 
 export type AppointmentModelProtocol = {
-  allAppointments: () => Promise<AppointmentDB[]>;
-  findById: (id: number) => Promise<AppointmentDB | undefind>;
-  registerAppointment: (body: AppointmentDB) => Promise<AppointmentDB>;
-  updateAppointment: (body: AppointmentDB) => Promise<AppointmentDB | undefined>;
-  deleteAppointment:(id: number) =>  Promise<AppointmentDB | undefined>;
+  // allAppointments: () => Promise<AppointmentDB[]>;
+  // findById: (id: number) => Promise<AppointmentDB | undefind>;
+  registerAppointment: (body: AppointmentDB) => Promise<number[]>;
+  // updateAppointment: (body: AppointmentDB) => Promise<AppointmentDB | undefined>;
+  // deleteAppointment:(id: number) =>  Promise<AppointmentDB | undefined>;
 }

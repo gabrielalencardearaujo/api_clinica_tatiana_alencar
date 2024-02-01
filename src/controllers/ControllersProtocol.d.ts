@@ -6,11 +6,11 @@ export type ClientControllerProtocol = {
 }
 
 export type AppointmentControllerProtocol = {
-  allAppointments: fnControllers<void>
-  findAppointment: fnControllers<void | undefined>
-  registerAppointment: fnControllers<void>
-  updateAppointment: fnControllers<void>
-  deleteAppointment: fnControllers<void>
+  // allAppo: fnControllers<void>
+  // findById: fnControllers<void | undefined>
+  register: fnControllers<void>
+  // update: fnControllers<void>
+  // delete: fnControllers<void>
 }
 
 type fnControllers<T> = (req: Request, res: Response) => Promise<T>;
