@@ -19,6 +19,11 @@ class AppointmentModel implements AppointmentModelProtocol {
     if (result.length > 0) return result;
     else return [];
   }
+
+  async deleteAppointment(idAppointment: number) {
+    const result = await connectionDB.delete().table('Appointments').where({ idAppointment });
+    return result;
+  }
 }
 
 export default new AppointmentModel;

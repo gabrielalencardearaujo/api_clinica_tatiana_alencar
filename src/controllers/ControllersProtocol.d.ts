@@ -9,8 +9,8 @@ export type AppointmentControllerProtocol = {
   allAppo: fnControllers<void>
   register: fnControllers<void>
   findId: fnControllers<void | undefined>
+  delete: fnControllers<void>
   // update: fnControllers<void>
-  // delete: fnControllers<void>
 }
 
 type fnControllers<T> = (req: Request, res: Response) => Promise<T>;

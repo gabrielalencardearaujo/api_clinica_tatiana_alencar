@@ -13,5 +13,7 @@ router.get('/client/:id', ClientController.findById);
 router.get('/appointments', AppointmentsController.allAppo);
 router.get('/appointments/:id', AppointmentsController.findId);
 router.post('/appointments', RegisterMiddleware, AppointmentsController.register);
+router.delete('/appointments/:id', AppointmentsController.delete);
+
 
 export { router };

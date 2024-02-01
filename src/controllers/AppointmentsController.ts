@@ -29,7 +29,7 @@ class AppointmentController implements AppointmentControllerProtocol {
       console.log(error);
       res.status(500);
       res.json({
-        info: 'Ocorreu um erro inesperado no nossos serviços, tente mais tarde!',
+        info: 'An unexpected error occurred in our services, please try later!',
         body: undefined
       })
     }
@@ -47,7 +47,7 @@ class AppointmentController implements AppointmentControllerProtocol {
 
     } catch (error) {
       res.json({
-        info: 'Ocorreu um erro inesperado no nossos serviços, tente mais tarde!',
+        info: 'An unexpected error occurred in our services, please try later!',
         body: undefined
       })
     }
@@ -56,7 +56,7 @@ class AppointmentController implements AppointmentControllerProtocol {
   async findId(req: Request, res: Response) {
     const { id } = req.params;
 
-    if(isNaN(+id)) {
+    if (isNaN(+id)) {
       res.status(400);
       res.json({
         info: 'Identifier invalid!',
@@ -65,12 +65,65 @@ class AppointmentController implements AppointmentControllerProtocol {
       return;
     }
 
-    const appo = await AppointmentModel.findById(+id);
-    console.log(appo);
-    res.json({
-      info: 'Search success!',
-      body: appo
-    })
+    try {
+      const appo = await AppointmentModel.findById(+id);
+      console.log(appo);
+      res.json({
+        info: 'Search success!',
+        body: appo
+      })
+    } catch (error) {
+      console.log(error)
+
+      res.status(500);
+      res.json({
+        info: 'An unexpected error occurred in our services, please try later!',
+        body: undefined
+      });
+    }
+
+  }
+
+  async delete(req: Request, res: Response) {
+    const { id } = req.params;
+
+    if (isNaN(+id)) {
+      res.status(400);
+      res.json({
+        info: 'Identifier invalid!',
+        body: undefined
+      })
+      return;
+    }
+    try {
+      const appo = await AppointmentModel.deleteAppointment(+id);
+      console.log(appo);
+
+      if(appo) {
+        res.status(200)
+        res.json({
+          info: 'Search success!',
+          body: appo
+        })
+      } else {
+        res.status(404)
+        res.json({
+          info: 'Appointment not exists!',
+          body: undefined
+        })
+      }
+     
+
+    } catch (error) {
+      console.log(error);
+
+      res.status(500);
+      res.json({
+        info: 'Delete unsuccess!',
+        body: undefined
+      });
+    }
+
   }
 }
 
