@@ -94,36 +94,38 @@ class AppointmentController implements AppointmentControllerProtocol {
         body: undefined
       })
       return;
-    }
-    try {
-      const appo = await AppointmentModel.deleteAppointment(+id);
-      console.log(appo);
+    } else {
 
-      if(appo) {
-        res.status(200)
+      try {
+
+        const appo = await AppointmentModel.deleteAppointment(+id);
+        console.log(appo);
+
+        if (appo) {
+          res.status(200)
+          res.json({
+            info: 'Search success!',
+            body: appo
+          })
+        } else {
+          res.status(404)
+          res.json({
+            info: 'Appointment not exists!',
+            body: undefined
+          })
+        }
+
+      } catch (error) {
+        console.log(error);
+
+        res.status(500);
         res.json({
-          info: 'Search success!',
-          body: appo
-        })
-      } else {
-        res.status(404)
-        res.json({
-          info: 'Appointment not exists!',
+          info: 'Delete unsuccess!',
           body: undefined
-        })
+        });
       }
-     
 
-    } catch (error) {
-      console.log(error);
-
-      res.status(500);
-      res.json({
-        info: 'Delete unsuccess!',
-        body: undefined
-      });
     }
-
   }
 }
 
