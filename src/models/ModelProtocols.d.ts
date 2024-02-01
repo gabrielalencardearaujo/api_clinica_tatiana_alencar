@@ -45,7 +45,7 @@ export type ProductsModelProtocol = {
   getProducts: () => Promise<Product[] | undefined>;
   registerProduts: (body: BodyProduct) => Promise<number[]>;
   findId: (id_type: number) => Promise<Product[] | []>;
-  // updateProducts: (body: BodyProduct) => Promise<void>;
+  updateProducts: (body: BodyProduct, id_type: number) => Promise<number>;
   // deleteProduts: (body: BodyProduct) => Promise<void>;
 
 }

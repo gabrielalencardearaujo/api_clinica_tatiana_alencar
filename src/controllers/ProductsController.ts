@@ -45,71 +45,75 @@ class ProductController implements ControllerProtocol {
     }
   }
 
-  // async findId(req: Request, res: Response) {
-  //   const { id } = req.params;
+  async findId(req: Request, res: Response) {
+    const { id } = req.params;
 
-  //   if (isNaN(+id)) {
-  //     res.status(400);
-  //     res.json({
-  //       info: 'Identifier invalid!',
-  //       body: undefined
-  //     })
-  //     return;
-  //   }
+    if (isNaN(+id)) {
+      res.status(400);
+      res.json({
+        info: 'Identifier invalid!',
+        body: undefined
+      })
+      return;
+    }
 
-  //   try {
-  //     const appo = await ProductModel.findById(+id);
+    try {
+      const appo = await ProductModel.findId(+id);
 
-  //     res.status(200);
-  //     res.json({
-  //       info: 'Search success!',
-  //       body: appo
-  //     })
-  //   } catch (error) {
-  //     console.log(error)
+      res.status(200);
+      res.json({
+        info: 'Search success!',
+        body: appo
+      })
 
-  //     res.status(500);
-  //     res.json({
-  //       info: 'An unexpected error occurred in our services, please try later!',
-  //       body: undefined
-  //     });
-  //   }
-  // }
+    } catch (error) {
+      console.log(error)
 
-  // async update(req: Request, res: Response) {
-  //   const body = req.body;
-  //   const { id } = req.params;
+      res.status(500);
+      res.json({
+        info: 'An unexpected error occurred in our services, please try later!',
+        body: undefined
+      });
+    }
+  }
 
-  //   if (isNaN(+id)) {
-  //     res.status(400);
-  //     res.json({
-  //       info: 'Identifier invalid!',
-  //       body: undefined
-  //     })
-  //     return;
-  //   }
+  async update(req: Request, res: Response) {
+    const body = req.body;
+    const { id } = req.params;
 
-  //   try {
-  //     const appo = ProductModel.updateAppointment(body, +id);
+    console.log(id)
+    console.log(body)
 
-  //     if (appo) {
-  //       res.status(200);
-  //       res.json({
-  //         info: 'Update success!',
-  //         body: appo
-  //       });
-  //     } 
+    if (isNaN(+id)) {
+      res.status(400);
+      res.json({
+        info: 'Identifier invalid!',
+        body: undefined
+      })
+      return;
+    }
+
+    try {
+      const appo = ProductModel.updateProducts(body, +id);
+
+      if (appo) {
+        res.status(200);
+        res.json({
+          info: 'Update success!',
+          body: appo
+        });
+      } 
       
-  //   } catch (error) {
-  //     console.log(error);
+    } catch (error) {
+      console.log(error);
 
-  //     res.status(500);
-  //     res.json({
-  //       info: 'An unexpected error occurred in our services, please try later!',
-  //       body: undefined
-  //     });
-  //   } 
-  // }
+      res.status(500);
+      res.json({
+        info: 'An unexpected error occurred in our services, please try later!',
+        body: undefined
+      });
+    } 
+  }
 
   // async delete(req: Request, res: Response) {
   //   const { id } = req.params;

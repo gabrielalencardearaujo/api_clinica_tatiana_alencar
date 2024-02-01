@@ -8,7 +8,7 @@ export type ClientControllerProtocol = {
 export type ControllerProtocol = {
   allItems: fnControllers<void>;
   register: fnControllers<void>;
-  // findId: fnControllers<void | undefined>;
+  findId: fnControllers<void | undefined>;
   // delete: fnControllers<void>;
   // update: fnControllers<void>;
 }

@@ -16,9 +16,10 @@ const ProductModel: ProductsModelProtocol = {
     return result;
   },
 
-  // async updateProducts(body: BodyProduct) {
-
-  // },
+  async updateProducts(body: BodyProduct, id_type: number) {
+    const result = await connectionDB.update(body).table('typeAppointments').where({ id_type });
+    return result;
+  },
 
   // async deleteProduts(id) {
 
