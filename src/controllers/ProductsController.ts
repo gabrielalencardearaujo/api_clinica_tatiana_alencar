@@ -3,7 +3,7 @@ import { Request, Response } from "express";
 import { ControllerProtocol } from "./ControllersProtocol";
 
 
-class AppointmentController implements ControllerProtocol {
+class ProductController implements ControllerProtocol {
   async register(req: Request, res: Response) {
     const body = req.body;
 
@@ -156,4 +156,4 @@ class AppointmentController implements ControllerProtocol {
   }
 }
 
-export default new AppointmentController;
+export default new ProductController;
