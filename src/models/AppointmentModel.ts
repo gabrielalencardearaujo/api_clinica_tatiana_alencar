@@ -4,8 +4,8 @@ import { AppointmentDB, AppointmentModelProtocol } from "./ModelProtocols";
 class AppointmentModel implements AppointmentModelProtocol {
   async allAppointments() {
     const result = await connectionDB.select().table('Appointments');
-    
-    if(result.length > 0) return result;
+
+    if (result.length > 0) return result;
     else return [];
   }
 
@@ -14,7 +14,11 @@ class AppointmentModel implements AppointmentModelProtocol {
     return result;
   }
 
-
+  async findById(idAppointment: number) {
+    const result = await connectionDB.select().where({ idAppointment }).table('Appointments')
+    if (result.length > 0) return result;
+    else return [];
+  }
 }
 
 export default new AppointmentModel;

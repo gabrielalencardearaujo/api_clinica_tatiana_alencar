@@ -11,6 +11,7 @@ router.get('/client/:id', ClientController.findById);
 
 // Rotas Consultas:
 router.get('/appointments', AppointmentsController.allAppo);
+router.get('/appointments/:id', AppointmentsController.findId);
 router.post('/appointments', RegisterMiddleware, AppointmentsController.register);
 
 export { router };
