@@ -26,9 +26,9 @@ type AppointmentDB = {
 }
 
 export type AppointmentModelProtocol = {
-  // allAppointments: () => Promise<AppointmentDB[]>;
-  // findById: (id: number) => Promise<AppointmentDB | undefind>;
+  allAppointments: () => Promise<AppointmentDB[] | []>;
   registerAppointment: (body: AppointmentDB) => Promise<number[]>;
+  // findById: (id: number) => Promise<AppointmentDB | undefind>;
   // updateAppointment: (body: AppointmentDB) => Promise<AppointmentDB | undefined>;
   // deleteAppointment:(id: number) =>  Promise<AppointmentDB | undefined>;
 }

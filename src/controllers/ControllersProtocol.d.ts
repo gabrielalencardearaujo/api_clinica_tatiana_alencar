@@ -6,9 +6,9 @@ export type ClientControllerProtocol = {
 }
 
 export type AppointmentControllerProtocol = {
-  // allAppo: fnControllers<void>
-  // findById: fnControllers<void | undefined>
+  allAppo: fnControllers<void>
   register: fnControllers<void>
+  // findById: fnControllers<void | undefined>
   // update: fnControllers<void>
   // delete: fnControllers<void>
 }

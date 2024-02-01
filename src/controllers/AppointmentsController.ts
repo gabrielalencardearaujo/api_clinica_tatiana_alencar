@@ -18,12 +18,41 @@ class AppointmentController implements AppointmentControllerProtocol{
     try {
       const result = await AppointmentModel.registerAppointment(appointment);
       console.log(result);
-      res.send(result);
+
+      res.status(200);
+      res.json({
+        info: 'Request Success!',
+        body: result
+      });
 
     } catch (error) {
       console.log(error);
-      res.send('deu ruim!')
+      res.status(500);
+      res.json({
+        info: 'Ocorreu um erro inesperado no nossos serviços, tente mais tarde!',
+        body: undefined
+      })
     }
+  }
+
+  async allAppo(req: Request, res: Response) {
+    try {
+      const arrayAppo = await AppointmentModel.allAppointments();
+
+      res.status(200);
+      res.json({
+        info: 'Request Success!',
+        body: arrayAppo
+      })
+
+    } catch (error) {
+      res.json({
+        info: 'Ocorreu um erro inesperado no nossos serviços, tente mais tarde!',
+        body: undefined
+      })
+    }
+
+
   }
 }
 

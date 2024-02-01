@@ -9,6 +9,7 @@ router.get('/clients', ClientController.allClients)
 router.get('/client/:id', ClientController.findById);
 
 // Rotas Consultas:
-router.post('/appointments', AppointmentsController.register)
+router.get('/appointments', AppointmentsController.allAppo);
+router.post('/appointments', AppointmentsController.register);
 
 export { router };
