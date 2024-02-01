@@ -3,11 +3,11 @@ import * as express from 'express';
 
 const router = express.Router();
 
-// Todos os clientes:
+// Rotas clientes:
 router.get('/clients', ClientController.allClients)
-
-// Consulta por cliente:
 router.get('/client/:id', ClientController.findById);
-router.post('/client', ClientController.registerClient);
+
+// Rotas Consultas:
+router.get('/appointments', )
 
 export { router };

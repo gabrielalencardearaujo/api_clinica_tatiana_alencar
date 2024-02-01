@@ -1,6 +1,6 @@
 import ClientModel from "@/models/ClientModel";
 import { Request, Response } from "express";
-import { ClientControllerProtocol } from "./ClientControllerProtocol";
+import { ClientControllerProtocol } from "./ControllersProtocol";
 
 class ClientController implements ClientControllerProtocol {
   async allClients(req: Request, res: Response) {
