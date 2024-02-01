@@ -98,13 +98,8 @@ class AppointmentController implements AppointmentControllerProtocol {
           info: 'Update success!',
           body: appo
         });
-      } else {
-        res.status(404)
-        res.json({
-          info: 'Appointment not exists!',
-          body: undefined
-        })
-      }
+      } 
+      
     } catch (error) {
       console.log(error);
 
