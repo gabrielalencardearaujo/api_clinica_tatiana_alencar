@@ -29,6 +29,23 @@ export type AppointmentModelProtocol = {
   allAppointments: () => Promise<AppointmentDB[] | []>;
   registerAppointment: (body: AppointmentDB) => Promise<number[]>;
   findById: (idAppointment: number) => Promise<AppointmentDB[] | []>;
-  deleteAppointment:(idAppointment: number) => Promise<number>;
+  deleteAppointment: (idAppointment: number) => Promise<number>;
   updateAppointment: (body: AppointmentDB, idAppointment: number) => Promise<number>;
+}
+
+type Product = {
+  title: string,
+  description: string,
+  price: number
+}
+
+export type BodyProduct = Product & {  id_type: number}
+
+export type ProductsModelProtocol = {
+  getProducts: () => Promise<Product[] | undefined>;
+  registerProduts: (body: BodyProduct) => Promise<number[]>;
+  findId: (id_type: number) => Promise<Product[] | []>;
+  // updateProducts: (body: BodyProduct) => Promise<void>;
+  // deleteProduts: (body: BodyProduct) => Promise<void>;
+
 }
