@@ -4,7 +4,6 @@ export const AppointmentMiddleware = (req: Request, res: Response, next: NextFun
   const body = req.body;
 
   if (
-
     (body.idClient === '') ||
     (body.idPayment === '') ||
     (body.typeAppointment === '') ||
@@ -17,8 +16,7 @@ export const AppointmentMiddleware = (req: Request, res: Response, next: NextFun
     })
 
     return;
-
-  } 
+  }
 
   req.body = {
     fk_idClient: Number(body.idClient),
