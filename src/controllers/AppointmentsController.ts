@@ -7,16 +7,8 @@ class AppointmentController implements AppointmentControllerProtocol {
   async register(req: Request, res: Response) {
     const body = req.body;
 
-    const appointment = {
-      fk_idClient: Number(body.idClient),
-      fk_typeAppointment: Number(body.typeAppointment),
-      idPayment: Number(body.idPayment),
-      description: String(body.description),
-      dateTime: String(body.date),
-    }
-
     try {
-      const result = await AppointmentModel.registerAppointment(appointment);
+      const result = await AppointmentModel.registerAppointment(body);
       console.log(result);
 
       res.status(200);

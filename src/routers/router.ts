@@ -1,7 +1,7 @@
 import AppointmentsController from '@/controllers/AppointmentsController';
 import ClientController from '../controllers/ClientController';
 import * as express from 'express';
-import { RegisterMiddleware } from '@/middlewares/RegisterMiddleware';
+import { AppointmentMiddleware } from '@/middlewares/RegisterMiddleware';
 
 const router = express.Router();
 
@@ -12,7 +12,7 @@ router.get('/client/:id', ClientController.findById);
 // Rotas Consultas:
 router.get('/appointments', AppointmentsController.allAppo);
 router.get('/appointments/:id', AppointmentsController.findId);
-router.post('/appointments', RegisterMiddleware, AppointmentsController.register);
+router.post('/appointments', AppointmentMiddleware, AppointmentsController.register);
 router.delete('/appointments/:id', AppointmentsController.delete);
 
 

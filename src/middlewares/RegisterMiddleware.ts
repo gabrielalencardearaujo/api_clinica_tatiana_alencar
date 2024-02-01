@@ -1,10 +1,10 @@
 import { NextFunction, Request, Response } from "express";
 
-export const RegisterMiddleware = (req: Request, res: Response, next: NextFunction) => {
+export const AppointmentMiddleware = (req: Request, res: Response, next: NextFunction) => {
   const body = req.body;
-  console.log(body);
 
   if (
+
     (body.idClient === '') ||
     (body.idPayment === '') ||
     (body.typeAppointment === '') ||
@@ -15,8 +15,18 @@ export const RegisterMiddleware = (req: Request, res: Response, next: NextFuncti
       info: 'Request Invalid! Some fields are empty.',
       body: undefined
     })
+
     return;
+
+  } 
+
+  req.body = {
+    fk_idClient: Number(body.idClient),
+    fk_typeAppointment: Number(body.typeAppointment),
+    idPayment: Number(body.idPayment),
+    description: String(body.description),
+    dateTime: String(body.date),
   }
-  
+
   next()
 }
