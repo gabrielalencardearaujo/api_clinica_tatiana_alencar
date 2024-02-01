@@ -31,7 +31,7 @@ class ProductController implements ControllerProtocol {
 
       res.status(200);
       res.json({
-        info: 'Request Success!',
+        info: 'Create Product Success!',
         body: result
       });
 
@@ -115,49 +115,49 @@ class ProductController implements ControllerProtocol {
     } 
   }
 
-  // async delete(req: Request, res: Response) {
-  //   const { id } = req.params;
+  async delete(req: Request, res: Response) {
+    const { id } = req.params;
 
-  //   if (isNaN(+id)) {
-  //     res.status(400);
-  //     res.json({
-  //       info: 'Identifier invalid!',
-  //       body: undefined
-  //     })
-  //     return;
-  //   } else {
+    if (isNaN(+id)) {
+      res.status(400);
+      res.json({
+        info: 'Identifier invalid!',
+        body: undefined
+      })
+      return;
+    } else {
 
-  //     try {
+      try {
 
-  //       const appo = await ProductModel.deleteAppointment(+id);
-  //       console.log(appo);
+        const appo = await ProductModel.deleteProdut(+id);
+        console.log(appo);
 
-  //       if (appo) {
-  //         res.status(200)
-  //         res.json({
-  //           info: 'Delete success!',
-  //           body: appo
-  //         })
-  //       } else {
-  //         res.status(404)
-  //         res.json({
-  //           info: 'Appointment not exists!',
-  //           body: undefined
-  //         })
-  //       }
+        if (appo) {
+          res.status(200)
+          res.json({
+            info: 'Delete success!',
+            body: appo
+          })
+        } else {
+          res.status(404)
+          res.json({
+            info: 'Product not exists!',
+            body: undefined
+          })
+        }
 
-  //     } catch (error) {
-  //       console.log(error);
+      } catch (error) {
+        console.log(error);
 
-  //       res.status(500);
-  //       res.json({
-  //         info: 'Delete unsuccess!',
-  //         body: undefined
-  //       });
-  //     }
+        res.status(500);
+        res.json({
+          info: 'Delete unsuccess!',
+          body: undefined
+        });
+      }
 
-  //   }
-  // }
+    }
+  }
 }
 
 export default new ProductController;

@@ -21,9 +21,10 @@ const ProductModel: ProductsModelProtocol = {
     return result;
   },
 
-  // async deleteProduts(id) {
-
-  // }
+  async deleteProdut(id_type) {
+    const result = await connectionDB.delete().table('typeAppointments').where({ id_type });
+    return result;
+  }
 }
 
 export default ProductModel;

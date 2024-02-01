@@ -22,6 +22,7 @@ router.get('/products', ProductController.allItems);
 router.get('/products/:id', ProductController.findId);
 router.post('/products', ProductController.register);
 router.put('/products/:id', ProductController.update);
+router.delete('/products/:id', ProductController.delete);
 
 
 export { router };
