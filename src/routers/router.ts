@@ -8,6 +8,6 @@ router.get('/clients', ClientController.allClients)
 
 // Consulta por cliente:
 router.get('/client/:id', ClientController.findById);
-router.post('/client', ClientController.findOneClient);
+router.post('/client', ClientController.registerClient);
 
 export { router };
