@@ -17,6 +17,8 @@ export type BodyClient = {
 
 type ClientsDB = BodyClient & { 'idClients': number }
 
+
+// Types Appointments:
 type AppointmentDB = {
   fk_idClient: number,
   fk_typeAppointment: number,
@@ -33,13 +35,15 @@ export type AppointmentModelProtocol = {
   updateAppointment: (body: AppointmentDB, idAppointment: number) => Promise<number>;
 }
 
+
+// Types Products:
 type Product = {
   title: string,
   description: string,
   price: number
 }
 
-export type BodyProduct = Product & {  id_type: number}
+export type BodyProduct = Product & { id_type: number }
 
 export type ProductsModelProtocol = {
   getProducts: () => Promise<Product[] | undefined>;
@@ -47,5 +51,21 @@ export type ProductsModelProtocol = {
   findId: (id_type: number) => Promise<Product[] | []>;
   updateProducts: (body: BodyProduct, id_type: number) => Promise<number>;
   deleteProdut: (id_type: number) => Promise<number>;
+}
 
+// Types Users:
+type Users = {
+  fullName: string,
+  email: string,
+  accessStatus: number,
+  password: string,
+}
+
+type BodyUser = Users & { idUser: number };
+
+export type UserModelProtocol = {
+  getUsers: () => Promise<BodyUser[]>;
+  registerUser: (body: Users) => Promise<number[]>;
+  findById: (idUser) => Promise<BodyUser[] | []>;
+  findByEmail: (email) => Promise<BodyUser[] | []>;
 }

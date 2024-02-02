@@ -3,7 +3,7 @@ import { Request, Response } from "express";
 import { ClientControllerProtocol } from "./ControllersProtocol";
 
 class ClientController implements ClientControllerProtocol {
-  async allClients(req: Request, res: Response) {
+  async allItems(req: Request, res: Response) {
     const result = await ClientModel.getClients();
     res.json(result);
   }

@@ -9,14 +9,15 @@ class AppointmentController implements ControllerProtocol {
 
     try {
       const result = await AppointmentModel.registerAppointment(body);
-      console.log(result);
 
-      res.status(200);
-      res.json({
-        info: 'Request Success!',
-        body: result
-      });
-
+      if(result) {
+        res.status(200);
+        res.json({
+          info: 'Request Success!',
+          body: result
+        });  
+      }
+   
     } catch (error) {
       console.log(error);
       res.status(500);

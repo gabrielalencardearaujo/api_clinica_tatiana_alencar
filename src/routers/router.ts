@@ -3,11 +3,12 @@ import AppointmentsController from '@/controllers/AppointmentsController';
 import ClientController from '../controllers/ClientController';
 import ProductController from '../controllers/ProductsController';
 import { AppointmentMiddleware } from '@/middlewares/RegisterMiddleware';
+import UserController from '@/controllers/UserController';
 
 const router = express.Router();
 
 // Rotas clientes:
-router.get('/clients', ClientController.allClients)
+router.get('/clients', ClientController.allItems)
 router.get('/client/:id', ClientController.findById);
 
 // Rotas Consultas:
@@ -23,6 +24,12 @@ router.get('/products/:id', ProductController.findId);
 router.post('/products', ProductController.register);
 router.put('/products/:id', ProductController.update);
 router.delete('/products/:id', ProductController.delete);
+
+// Rotas de Usuários:
+router.post('/login', UserController.login);
+router.get('/users', UserController.allItems);
+router.get('/user/:id', UserController.findById);
+router.post('/user', UserController.register);
 
 
 export { router };
