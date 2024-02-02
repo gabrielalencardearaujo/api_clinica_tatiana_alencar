@@ -1,4 +1,4 @@
-const database = {
+const databaseSQL = {
   host: process.env.HOST,
   name: 'Clinica_Tatiana_Alencar',
   user: 'root',
@@ -6,4 +6,9 @@ const database = {
   port: Number(process.env.port)
 }
 
-export default database;
+const databaseDB = {
+  uri: process.env.URI_DB,
+   
+}
+
+export { databaseSQL, databaseDB };
