@@ -7,8 +7,7 @@ const databaseSQL = {
 }
 
 const databaseDB = {
-  uri: process.env.URI_DB,
-   
+  uri: process.env.URI_DB || '',
 }
 
 export { databaseSQL, databaseDB };
