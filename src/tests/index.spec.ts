@@ -54,12 +54,32 @@ describe('testes nas rotas appointments', () => {
     })
   });
 
-  it('deve retornar um array com 1 appointment.', async () => {
+  it('deve retornar um obj com o id do appointment criado.', async () => {
 
-    return request.post(`/appointments`).then(res => {
+    return request.post(`/appointments`).send(appoObj).then(res => {
 
       expect(res.statusCode).toEqual(200);
-      expect(res.body.body[0].idAppointment).toEqual(8);
+      expect(res.body.body[0]).toBeDefined();
+      console.log(res.body);
+    })
+  });
+
+  it('deve retornar um obj.body vazio.', async () => {
+    const appId = 8;
+    return request.put(`/appointments/${appId}`).send(appoObj).then(res => {
+
+      expect(res.statusCode).toEqual(200);
+      expect(res.body).toBeDefined();
+      console.log(res.body);
+    })
+  });
+
+  it('deve retornar um obj.body com um numero.', async () => {
+    const appId = 18;
+    return request.delete(`/appointments/${appId}`).then(res => {
+
+      expect(res.statusCode).toEqual(200);
+      expect(res.body.body).toBe(1);
       console.log(res.body);
     })
   });
