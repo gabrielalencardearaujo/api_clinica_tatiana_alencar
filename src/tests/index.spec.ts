@@ -75,7 +75,7 @@ describe('testes nas rotas appointments', () => {
   });
 
   it('deve retornar um obj.body com um numero.', async () => {
-    const appId = 18;
+    const appId = 19;
     return request.delete(`/appointments/${appId}`).then(res => {
 
       expect(res.statusCode).toEqual(200);
