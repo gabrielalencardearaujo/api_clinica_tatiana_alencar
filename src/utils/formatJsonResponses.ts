@@ -21,10 +21,10 @@ export default function formatJsonResponses(statusCode: number, data?: unknown) 
         data,
       }
 
-    case 404:
+    case 401:
 
       return {
-        info: 'Not exist!',
+        info: 'Not authenticated!',
         statusCode,
         data,
       }
@@ -37,7 +37,17 @@ export default function formatJsonResponses(statusCode: number, data?: unknown) 
         data,
       }
 
+    case 404:
+
+      return {
+        info: 'Not exist!',
+        statusCode,
+        data,
+      }
+
+
     case 500:
+
       return {
         info: 'An unexpected error occurred in our services, please try later!',
         statusCode,
@@ -45,6 +55,7 @@ export default function formatJsonResponses(statusCode: number, data?: unknown) 
       }
 
     default:
+      
       return {
         info: 'Invalid Status Code!',
         statusCode,

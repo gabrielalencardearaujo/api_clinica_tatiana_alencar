@@ -10,8 +10,11 @@ const VerifyTokenAccessMiddleware = (req: Request, res: Response, next: NextFunc
 
   if(decoded && decoded.accessStatus > 0) 
     next();
-  else {
+  else if(decoded && decoded.accessStatus === 0) {
     formatJsonResponses(403);
+    return;
+  } else {
+    formatJsonResponses(401);
     return;
   }
 }

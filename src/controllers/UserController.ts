@@ -15,6 +15,11 @@ class UserController implements UserControllerProtocol {
   async login(req: Request, res: Response) {
     const { email, password } = req.body;
 
+    if((!email || !password) || (email === '' || password === '')){
+      res.status(400);
+      res.json(formatJsonResponses(400));
+    }
+
     try {
       const user = await UserModel.findByEmail(email);
 
@@ -46,6 +51,19 @@ class UserController implements UserControllerProtocol {
 
   async register(req: Request, res: Response) {
     const body = req.body;
+
+    if((!body.email || !body.password) || (body.email === '' || body.password === '')){
+      res.status(400);
+      res.json(formatJsonResponses(400));
+    }
+
+    const user = await UserModel.findByEmail(body.email); 
+
+    if(user.length > 0) {
+      res.status(403);
+      res.json(formatJsonResponses(403));
+      return;
+    }
 
     try {
       const hash: string = await bcrypt.hash(body.password, 10);
