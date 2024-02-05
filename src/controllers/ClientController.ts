@@ -1,6 +1,7 @@
 import ClientModel from "@/models/ClientModel";
 import { Request, Response } from "express";
 import { ClientControllerProtocol } from "./ControllersProtocol";
+import formatJsonResponses from "@/utils/formatJsonResponses";
 
 class ClientController implements ClientControllerProtocol {
   async allItems(req: Request, res: Response) {
@@ -14,7 +15,7 @@ class ClientController implements ClientControllerProtocol {
     if (isNaN(+id)) {
 
       res.status(400);
-      res.json({ info: "Identifier invalid!" });
+      res.json(formatJsonResponses(400));
       return;
 
     } else {
@@ -23,18 +24,16 @@ class ClientController implements ClientControllerProtocol {
         const result = await ClientModel.findClientById(+id);
         if (result.length === 0) {
           res.status(404);
-          res.json({ info: 'Client not exists!' })
+          res.json(formatJsonResponses(404))
         } else {
           res.status(200);
-          res.json({
-            info: "Request Success!", body: result[0]
-          })
+          res.json(formatJsonResponses(200, result[0]))
         }
 
       } catch (error) {
         console.log(error);
         res.status(500);
-        res.json({ info: "Ocorreu algum erro no banco de dados! " });
+        res.json(formatJsonResponses(500));
       }
     }
   }
