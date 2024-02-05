@@ -6,8 +6,12 @@ import { AppointmentMiddleware } from '@/middlewares/AppointmentMiddleware';
 import UserController from '@/controllers/UserController';
 import ProductMiddleware from '@/middlewares/ProductMiddlware';
 import VerifyTokenAccessMiddleware from '@/middlewares/VerifyTokenAccessMiddleware';
+import HomeController from '@/controllers/HomeController';
 
 const router = express.Router();
+
+// Rota hateoas:
+router.get('/', HomeController.index)
 
 // Rotas clientes:
 router.get('/clients', VerifyTokenAccessMiddleware, ClientController.allItems)
