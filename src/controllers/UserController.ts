@@ -4,6 +4,7 @@ import UserModel from "@/models/UserModel";
 import * as bcrypt from 'bcrypt';
 import * as jwt from 'jsonwebtoken';
 import ServerConfig from "@/configs/ServerConfig";
+import formatJsonResponses from "@/utils/formatJsonResponses";
 
 class UserController implements UserControllerProtocol {
   async allItems(req: Request, res: Response) {
@@ -24,33 +25,22 @@ class UserController implements UserControllerProtocol {
           const token = jwt.sign({ email, accessStatus: user[0]?.accessStatus }, ServerConfig.secret, { expiresIn: '7d' });
 
           res.status(200);
-          res.json({
-            info: 'Login success.',
-            token,
-          })
+          res.json(formatJsonResponses(200, token));
+
         } else {
           res.status(403);
-          res.json({
-            info: 'Email or password invalid.',
-            token: undefined
-          })
+          res.json(formatJsonResponses(403))
         }
 
       } else {
         res.status(403);
-        res.json({
-          info: 'Email or password invalid.',
-          token: undefined
-        })
+        res.json(formatJsonResponses(403))
       }
     } catch (error) {
       console.log(error);
 
       res.status(500);
-      res.json({
-        info: 'An unexpected error occurred in our services, please try later!',
-        body: undefined
-      });
+      res.json(formatJsonResponses(500));
     }
   }
 
@@ -64,19 +54,13 @@ class UserController implements UserControllerProtocol {
 
       if (result) {
         res.status(200);
-        res.json({
-          info: 'Register Success!',
-          body: result
-        });
+        res.json(formatJsonResponses(200, result));
       }
     } catch (error) {
       console.log(error);
 
       res.status(500);
-      res.json({
-        info: 'An unexpected error occurred in our services, please try later!',
-        body: undefined
-      });
+      res.json(formatJsonResponses(500));
     }
   }
 
@@ -86,7 +70,7 @@ class UserController implements UserControllerProtocol {
     if (isNaN(+id)) {
 
       res.status(400);
-      res.json({ info: "Identifier invalid!" });
+      res.json(formatJsonResponses(400));
       return;
 
     } else {
@@ -95,23 +79,17 @@ class UserController implements UserControllerProtocol {
         const result = await UserModel.findById(+id);
         if (result.length === 0) {
           res.status(404);
-          res.json({ info: 'Client not exists!' })
+          res.json(formatJsonResponses(404))
         } else {
           res.status(200);
-          res.json({
-            info: "Request Success!",
-            body: result[0]
-          })
+          res.json(formatJsonResponses(200, result[0]))
         }
 
       } catch (error) {
         console.log(error);
 
         res.status(500);
-        res.json({
-          info: 'An unexpected error occurred in our services, please try later!',
-          body: undefined
-        });
+        res.json(formatJsonResponses(500));
       }
     }
   }

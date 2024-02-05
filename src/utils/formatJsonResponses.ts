@@ -1,4 +1,4 @@
-export default function (statusCode: number, data?: unknown) {
+export default function formatJsonResponses(statusCode: number, data?: unknown) {
 
   if (!data) {
     data = [];
