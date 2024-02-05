@@ -1,6 +1,7 @@
 import AppointmentModel from "@/models/AppointmentModel";
 import { Request, Response } from "express";
 import { ControllerProtocol } from "./ControllersProtocol";
+import formatJsonResponses from "@/utils/formatJsonResponses";
 
 
 class AppointmentController implements ControllerProtocol {
@@ -12,19 +13,13 @@ class AppointmentController implements ControllerProtocol {
 
       if(result) {
         res.status(200);
-        res.json({
-          info: 'Request Success!',
-          body: result
-        });  
+        res.json(formatJsonResponses(200, result));  
       }
    
     } catch (error) {
       console.log(error);
       res.status(500);
-      res.json({
-        info: 'An unexpected error occurred in our services, please try later!',
-        body: undefined
-      })
+      res.json(formatJsonResponses(500))
     }
   }
 
@@ -33,16 +28,11 @@ class AppointmentController implements ControllerProtocol {
       const arrayAppo = await AppointmentModel.allAppointments();
 
       res.status(200);
-      res.json({
-        info: 'Request Success!',
-        body: arrayAppo
-      })
+      res.json(formatJsonResponses(200, arrayAppo))
 
     } catch (error) {
-      res.json({
-        info: 'An unexpected error occurred in our services, please try later!',
-        body: undefined
-      })
+      res.status(500);
+      res.json(formatJsonResponses(500))
     }
   }
 
@@ -51,10 +41,7 @@ class AppointmentController implements ControllerProtocol {
 
     if (isNaN(+id)) {
       res.status(400);
-      res.json({
-        info: 'Identifier invalid!',
-        body: undefined
-      })
+      res.json(formatJsonResponses(400))
       return;
     }
 
@@ -62,18 +49,12 @@ class AppointmentController implements ControllerProtocol {
       const appo = await AppointmentModel.findById(+id);
 
       res.status(200);
-      res.json({
-        info: 'Search success!',
-        body: appo
-      })
+      res.json(formatJsonResponses(200, appo))
     } catch (error) {
       console.log(error)
 
       res.status(500);
-      res.json({
-        info: 'An unexpected error occurred in our services, please try later!',
-        body: undefined
-      });
+      res.json(formatJsonResponses(500));
     }
   }
 
@@ -83,10 +64,7 @@ class AppointmentController implements ControllerProtocol {
 
     if (isNaN(+id)) {
       res.status(400);
-      res.json({
-        info: 'Identifier invalid!',
-        body: undefined
-      })
+      res.json(formatJsonResponses(400))
       return;
     }
 
@@ -95,20 +73,14 @@ class AppointmentController implements ControllerProtocol {
 
       if (appo) {
         res.status(200);
-        res.json({
-          info: 'Update success!',
-          body: appo
-        });
+        res.json(formatJsonResponses(200, appo));
       } 
       
     } catch (error) {
       console.log(error);
 
       res.status(500);
-      res.json({
-        info: 'An unexpected error occurred in our services, please try later!',
-        body: undefined
-      });
+      res.json(formatJsonResponses(500));
     } 
   }
 
@@ -117,10 +89,7 @@ class AppointmentController implements ControllerProtocol {
 
     if (isNaN(+id)) {
       res.status(400);
-      res.json({
-        info: 'Identifier invalid!',
-        body: undefined
-      })
+      res.json(formatJsonResponses(400))
       return;
     } else {
 
@@ -131,26 +100,17 @@ class AppointmentController implements ControllerProtocol {
 
         if (appo) {
           res.status(200)
-          res.json({
-            info: 'Delete success!',
-            body: appo
-          })
+          res.json(formatJsonResponses(200, appo))
         } else {
           res.status(404)
-          res.json({
-            info: 'Appointment not exists!',
-            body: undefined
-          })
+          res.json(formatJsonResponses(404))
         }
 
       } catch (error) {
         console.log(error);
 
         res.status(500);
-        res.json({
-          info: 'Delete unsuccess!',
-          body: undefined
-        });
+        res.json(formatJsonResponses(500));
       }
 
     }
