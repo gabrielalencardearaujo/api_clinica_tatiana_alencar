@@ -13,8 +13,8 @@ app.use(bodyParser.urlencoded({ extended: false }))
 app.use(bodyParser.json());
 
 mongoose.connect(databaseDB.uri)
-  .then(res => {
-    console.log(res);
+  .then(() => {
+    // console.log(res);
   })
   .catch(err => console.log(err));
 
