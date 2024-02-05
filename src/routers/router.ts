@@ -5,12 +5,13 @@ import ProductController from '../controllers/ProductsController';
 import { AppointmentMiddleware } from '@/middlewares/AppointmentMiddleware';
 import UserController from '@/controllers/UserController';
 import ProductMiddleware from '@/middlewares/ProductMiddlware';
+import VerifyTokenAccessMiddleware from '@/middlewares/VerifyTokenAccessMiddleware';
 
 const router = express.Router();
 
 // Rotas clientes:
-router.get('/clients', ClientController.allItems)
-router.get('/client/:id', ClientController.findById);
+router.get('/clients', VerifyTokenAccessMiddleware, ClientController.allItems)
+router.get('/client/:id', VerifyTokenAccessMiddleware, ClientController.findById);
 
 // Rotas Consultas:
 router.get('/appointments', AppointmentsController.allItems);
@@ -22,15 +23,15 @@ router.delete('/appointments/:id', AppointmentsController.delete);
 // Rotas de Produtos/Servicos:
 router.get('/products', ProductController.allItems);
 router.get('/products/:id', ProductController.findId);
-router.post('/products', ProductMiddleware, ProductController.register);
-router.put('/products/:id', ProductMiddleware, ProductController.update);
-router.delete('/products/:id', ProductController.delete);
+router.post('/products', VerifyTokenAccessMiddleware, ProductMiddleware, ProductController.register);
+router.put('/products/:id', VerifyTokenAccessMiddleware, ProductMiddleware, ProductController.update);
+router.delete('/products/:id', VerifyTokenAccessMiddleware, ProductController.delete);
 
 // Rotas de Usuários:
 router.post('/login', UserController.login);
-router.get('/users', UserController.allItems);
-router.get('/user/:id', UserController.findById);
-router.post('/user', UserController.register);
+router.get('/users', VerifyTokenAccessMiddleware, UserController.allItems);
+router.get('/user/:id', VerifyTokenAccessMiddleware, UserController.findById);
+router.post('/user', VerifyTokenAccessMiddleware, UserController.register);
 
 
 export { router };

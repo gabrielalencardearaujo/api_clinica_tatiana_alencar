@@ -14,7 +14,7 @@ app.use(bodyParser.json());
 
 mongoose.connect(databaseDB.uri)
   .then(res => {
-    console.log(res)
+    console.log(res);
   })
   .catch(err => console.log(err));
 
