@@ -2,8 +2,9 @@ import * as express from 'express';
 import AppointmentsController from '@/controllers/AppointmentsController';
 import ClientController from '../controllers/ClientController';
 import ProductController from '../controllers/ProductsController';
-import { AppointmentMiddleware } from '@/middlewares/RegisterMiddleware';
+import { AppointmentMiddleware } from '@/middlewares/AppointmentMiddleware';
 import UserController from '@/controllers/UserController';
+import ProductMiddleware from '@/middlewares/ProductMiddlware';
 
 const router = express.Router();
 
@@ -21,8 +22,8 @@ router.delete('/appointments/:id', AppointmentsController.delete);
 // Rotas de Produtos/Servicos:
 router.get('/products', ProductController.allItems);
 router.get('/products/:id', ProductController.findId);
-router.post('/products', ProductController.register);
-router.put('/products/:id', ProductController.update);
+router.post('/products', ProductMiddleware, ProductController.register);
+router.put('/products/:id', ProductMiddleware, ProductController.update);
 router.delete('/products/:id', ProductController.delete);
 
 // Rotas de Usuários:
